@@ -72,7 +72,7 @@ def get_search_list_ozon(query='шампунь'):
         driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.END)
         time.sleep(1)
     
-    css_selector = 'span.c3112-a1.tsHeadline500Medium.c3112-b9'
+    css_selector = 'span.c3114-a1.tsHeadline500Medium.c3114-b9'
     price_elements = driver.find_elements(By.CSS_SELECTOR, css_selector)
     product_prices = [element.text for element in price_elements]
     
@@ -80,9 +80,6 @@ def get_search_list_ozon(query='шампунь'):
     product_links = driver.find_elements(By.CSS_SELECTOR, 'a[href*="/product/"]')
     product_urls = [link.get_attribute('href') for link in product_links][:2 * len(product_prices):2]
     
-    for price in product_prices:
-        print(price)
-        print(price_to_int(price))
     product_prices = list(map(price_to_int, product_prices))
     
     driver.quit()
